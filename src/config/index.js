@@ -12,6 +12,8 @@ const config = {
   ENV: process.env.NODE_ENV,
   ACCES_TOKEN: process.env.ACCESS_TOKEN_SECRET,
   STRIPE_API: process.env.SRTIPE_KEY,
+  USER_EMAIL: process.env.EMAIL,
+  USER_PASS: process.env.PASSWORD,
 };
 
 module.exports = Object.freeze(config);
