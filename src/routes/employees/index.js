@@ -1,5 +1,5 @@
-const {CreateEmployees} = require('../../api/employees')
+const {CreateEmployees, GetAllUserEmployees} = require('../../api/employees')
 
 const employeeRoutes = require('express').Router()
-employeeRoutes.get('/',CreateEmployees)
+employeeRoutes.get('/',GetAllUserEmployees).post('/',CreateEmployees)
 module.exports = employeeRoutes
