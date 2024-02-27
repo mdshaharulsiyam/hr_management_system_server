@@ -12,9 +12,9 @@ const mailSend = async (mailData) => {
         from: mailData.sender,
         to: mailData.receiver,
         subject: mailData.subject,
-        text: mailData.msg,
+        html: mailData.msg,
     };
     const info = await transporter.sendMail(mailOptions)
-    console.log(info)
+    // console.log(info)
 }
 module.exports = mailSend

@@ -8,7 +8,7 @@ const ApplyMiddleWare = (app)=>{
         origin: [
             LOCAL_CLIENT,
             CLIENT,
-            'https://gregarious-mandazi-69cbd9.netlify.app','http://localhost:5173/'
+            'http://localhost:3000/'
         ],
         credentials : true,
         optionsSuccessStatus: 200,

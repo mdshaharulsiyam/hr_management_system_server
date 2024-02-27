@@ -1,4 +1,5 @@
-const {Schema ,model} = require("mongoose");
+const { Schema, model } = require("mongoose");
+const bcrypt = require('bcryptjs');
 const employeeSchema = new Schema({
     FullName: {
         type: String,
@@ -39,7 +40,7 @@ const employeeSchema = new Schema({
     },
     leaves: {
         type: Number,
-        default: 21
+        default: 45
     },
     loan: {
         type: Number,
