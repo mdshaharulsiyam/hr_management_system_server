@@ -1,6 +1,7 @@
 const employeeModel = require("../../models/employee");
 const mailSend = require("../../utils/SendMail")
 const bcrypt = require('bcryptjs');
+// create employe 
 const CreateEmployees = async (req, res) => {
     // const {employeeEmail} = req.query;        //    <a href="${employeeEmail}"></a>
     try {
@@ -42,15 +43,16 @@ const CreateEmployees = async (req, res) => {
     }
 
 }
+//login
 const GetsingleEmployees = async (req, res) => {
     try {
         const { email } = req.params;
-        const { password } = req.body;
+        const { password } = req.query;
         const result = await employeeModel.findOne({ email: email });
         bcrypt.compare(password, result?.password, function (err, ismatch) {
             if (ismatch) {
                 res.send({ success: true, data: result });
-            }else{
+            } else {
                 res.status(400).send({ success: false, msg: "password doesn't match" });
             }
         });
@@ -58,6 +60,22 @@ const GetsingleEmployees = async (req, res) => {
         res.status(400).send({ success: false, msg: 'unable to get employee data' });
     }
 };
+// get employee 
+const GetEmployeeDetails = async (req, res) => {
+    try {
+        const tokenemail = req.user?.email;
+        const { email } = req.query;
+        if (email !== tokenemail) {
+            return res.status(401).send({ message: "unauthorized access" });
+        }
+        const result = await employeeModel.findOne({ email: email });
+        res.send({ success: true, data: result });
+    } catch (err) {
+        res.status(400).send({ success: false, msg: 'unable to get employee data' });
+    }
+}
+module.exports = GetEmployeeDetails
+// get all employee
 const GetAllEmployees = async (req, res) => {
     try {
         const result = await employeeModel.find();
@@ -66,4 +84,4 @@ const GetAllEmployees = async (req, res) => {
         res.status(400).send({ success: false, msg: 'unable to get employee data' });
     }
 };
-module.exports = { CreateEmployees, GetAllEmployees, GetsingleEmployees }
+module.exports = { CreateEmployees, GetAllEmployees, GetsingleEmployees, GetEmployeeDetails }

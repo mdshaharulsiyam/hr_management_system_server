@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const { ACCES_TOKEN } = require("../../config");
 
 const GenarateToken = async(userData)=>{

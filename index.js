@@ -4,12 +4,14 @@ const ApplyMiddleWare = require("./src/utils/Middleware/ApplyMiddleware");
 const GlobalErrorHandeler = require("./src/utils/GlobalErrorHandeler/GlobalErrorHandeler");
 const ConnectionDB = require("./src/utils/DB_connection");
 const employeeRoutes = require("./src/routes/employees");
+const JWTRoutes = require("./src/routes/JWT");
 const app = express()
 const port = process.env.PORT || 5000;
 ApplyMiddleWare(app)
 
 
 app.use('/employe',employeeRoutes)
+app.use('/jwt',JWTRoutes)
 app.get('/', (req, res) => {
     res.json('HR management server is running....')
 })

@@ -6,11 +6,11 @@ const CookieToken = async (req, res) => {
     try {
         // get user data form response
         const userData = req.body;
-        if (!userData?.useremail) {
+        if (!userData?.email) {
             return res.send({ succes: false, msg: 'user email not found' })
         }
         //genarate tocken
-        const token = GenarateToken(userData)
+        const token =await GenarateToken(userData)
         //set token 
         res.cookie('token', token, {
             httpOnly: true,
