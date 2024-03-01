@@ -84,4 +84,17 @@ const GetAllEmployees = async (req, res) => {
         res.status(400).send({ success: false, msg: 'unable to get employee data' });
     }
 };
-module.exports = { CreateEmployees, GetAllEmployees, GetsingleEmployees, GetEmployeeDetails }
+const GetEmployee = async (req, res) => {
+    try {
+        const role = req.user?.role;
+        if (!role || role !== 'admin') {
+            return res.status(401).send({ message: "unauthorized access" });
+        }
+        const id = req.params.id;
+        const result = await employeeModel.findOne({ _id: new ObjectId(id) });
+        res.send({ success: true, data: result });
+    } catch (err) {
+        res.status(400).send({ success: false, msg: 'unable to get employee data' });
+    }
+};
+module.exports = { CreateEmployees, GetAllEmployees, GetsingleEmployees, GetEmployeeDetails, GetEmployee }
