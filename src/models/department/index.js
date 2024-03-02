@@ -14,8 +14,8 @@ const Departmentshcema = new Schema({
         required: true,
     },
     'Totalteam': {
-        type: Number,
-        default: 0
+        type: [Schema.Types.ObjectId],
+        required: false,
     },
 
 })

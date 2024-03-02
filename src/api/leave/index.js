@@ -4,7 +4,6 @@ const leave = require("../models/leave");
 const LeavePost = async (req, res) => {
     const data = req.body;
     const result = await leave.create(data)
-    console.log(result)
     res.send({ success: true, msg: "Posted Successfully" })
 }
 const leaveGet = async (req, res) => {

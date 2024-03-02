@@ -62,7 +62,6 @@ const getTeam = async (req, res) => {
     }
 }
 const updateTeam = async (req, res) => {
-    console.log('update hitted')
     const data = req.body;
     const { memberId, _id ,teamname} = data
     try {

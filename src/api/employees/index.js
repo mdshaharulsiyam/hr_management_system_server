@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const CreateEmployees = async (req, res) => {
     // const {employeeEmail} = req.query;        //    <a href="${employeeEmail}"></a>
     try {
-        const { requestedUser } = req.user
+        const  requestedUser  = req.user
         if (requestedUser?.role !== 'admin') {
             return res.status(401).send({ message: "unauthorized access" });
         }
@@ -81,7 +81,7 @@ const GetEmployeeDetails = async (req, res) => {
 // get all employee
 const GetAllEmployees = async (req, res) => {
     try {
-        const { requestedUser } = req.user
+        const  requestedUser  = req.user
         if (requestedUser?.role !== 'admin') {
             return res.status(401).send({ message: "unauthorized access" });
         }
@@ -105,7 +105,7 @@ const GetEmployee = async (req, res) => {
     }
 };
 const handleGethasteamUser = async (req, res) => {
-    const { requestedUser } = req.user
+    const requestedUser = req.user
     if (requestedUser?.role !== 'admin') {
         return res.status(401).send({ message: "unauthorized access" });
     }
