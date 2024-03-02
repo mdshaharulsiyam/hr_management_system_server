@@ -5,6 +5,10 @@ const bcrypt = require('bcryptjs');
 const CreateEmployees = async (req, res) => {
     // const {employeeEmail} = req.query;        //    <a href="${employeeEmail}"></a>
     try {
+        const { requestedUser } = req.user
+        if (requestedUser?.role !== 'admin') {
+            return res.status(401).send({ message: "unauthorized access" });
+        }
         const data = req.body
         const password = data.password
         const salt = await bcrypt.genSalt(10);
@@ -74,10 +78,13 @@ const GetEmployeeDetails = async (req, res) => {
         res.status(400).send({ success: false, msg: 'unable to get employee data' });
     }
 }
-module.exports = GetEmployeeDetails
 // get all employee
 const GetAllEmployees = async (req, res) => {
     try {
+        const { requestedUser } = req.user
+        if (requestedUser?.role !== 'admin') {
+            return res.status(401).send({ message: "unauthorized access" });
+        }
         const result = await employeeModel.find();
         res.send({ success: true, data: result });
     } catch (err) {
@@ -97,4 +104,12 @@ const GetEmployee = async (req, res) => {
         res.status(400).send({ success: false, msg: 'unable to get employee data' });
     }
 };
-module.exports = { CreateEmployees, GetAllEmployees, GetsingleEmployees, GetEmployeeDetails, GetEmployee }
+const handleGethasteamUser = async (req, res) => {
+    const { requestedUser } = req.user
+    if (requestedUser?.role !== 'admin') {
+        return res.status(401).send({ message: "unauthorized access" });
+    }
+    const result = await employeeModel.find({ team: 'none' });
+    return res.send(result);
+};
+module.exports = { CreateEmployees, GetAllEmployees, GetsingleEmployees, GetEmployeeDetails, GetEmployee, handleGethasteamUser }
