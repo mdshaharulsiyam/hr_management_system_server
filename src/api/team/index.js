@@ -1,12 +1,12 @@
 const { ObjectId } = require("mongodb");
-const team = require("../models/team");
-const userModel = require("../models/user");
+const team = require("../../models/team");
+const employeeModel = require("../../models/employee");
 
 const postteam = async (req, res) => {
     const data = req.body;
     const { leader, teamname } = data
     await team.create(data)
-    await userModel.updateOne({ _id: new ObjectId(leader) }, {
+    await employeeModel.updateOne({ _id: new ObjectId(leader) }, {
         $set: {
             team: teamname
         }
@@ -73,7 +73,7 @@ const updateTeam = async (req, res) => {
                 }
             }
         );
-        await userModel.updateOne({ _id: new ObjectId(memberId) }, {
+        await employeeModel.updateOne({ _id: new ObjectId(memberId) }, {
             $set: {
                 team: teamname
             }

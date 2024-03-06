@@ -12,6 +12,7 @@ const Departmentshcema = new Schema({
     'description': {
         type: String,
         required: true,
+        unique: true
     },
     'Totalteam': {
         type: [Schema.Types.ObjectId],

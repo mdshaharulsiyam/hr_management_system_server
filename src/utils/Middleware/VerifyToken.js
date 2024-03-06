@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { ACCES_TOKEN } = require("../../config");
 const VerifyToken = async (req, res,next) => {
     const token = req?.cookies?.token;
+    console.log(token)
     if (!token) {
         return res.status(401).send({ message: "unauthorized access" });
     }

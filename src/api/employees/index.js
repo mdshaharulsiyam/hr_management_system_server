@@ -17,7 +17,7 @@ const CreateEmployees = async (req, res) => {
         const result = await employeeModel.create(data)
         const mailData = {
             sender: 'shaharulsiyam0273@gmail.com',
-            receiver: 'shaharulsiyam56@gmail.com',
+            receiver: `${data?.email}`,
             subject: 'Welcome to our - Your New Employee Information',
             msg: `<body style="font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #555;">
                 <p>Dear ${data.FullName},</p>
@@ -81,10 +81,11 @@ const GetEmployeeDetails = async (req, res) => {
 // get all employee
 const GetAllEmployees = async (req, res) => {
     try {
-        const  requestedUser  = req.user
+        const requestedUser = req.user
         if (requestedUser?.role !== 'admin') {
             return res.status(401).send({ message: "unauthorized access" });
         }
+        console.log(requestedUser?.role)
         const result = await employeeModel.find();
         res.send({ success: true, data: result });
     } catch (err) {
