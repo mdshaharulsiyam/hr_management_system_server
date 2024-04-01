@@ -2,5 +2,5 @@ const {CreateEmployees, GetAllEmployees, GetsingleEmployees,GetEmployeeDetails, 
 const VerifyToken = require('../../utils/Middleware/VerifyToken')
 
 const employeeRoutes = require('express').Router()
-employeeRoutes.get('/',VerifyToken,GetAllEmployees).get('/hasteam',VerifyToken,handleGethasteamUser).post('/',VerifyToken,CreateEmployees).get('/login/:email',GetsingleEmployees).get('/details',VerifyToken,GetEmployeeDetails).get('single/:id',VerifyToken,GetEmployee)
+employeeRoutes.get('/employe',GetAllEmployees).get('/employe/hasteam',VerifyToken,handleGethasteamUser).post('/employe',VerifyToken,CreateEmployees).get('/employe/login/:email',GetsingleEmployees).get('/employe/details',VerifyToken,GetEmployeeDetails).get('/employe/single/:id',VerifyToken,GetEmployee)
 module.exports = employeeRoutes

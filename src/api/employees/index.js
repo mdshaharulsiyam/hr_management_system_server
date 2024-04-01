@@ -81,11 +81,11 @@ const GetEmployeeDetails = async (req, res) => {
 // get all employee
 const GetAllEmployees = async (req, res) => {
     try {
-        const requestedUser = req.user
-        if (requestedUser?.role !== 'admin') {
-            return res.status(401).send({ message: "unauthorized access" });
-        }
-        console.log(requestedUser?.role)
+        // const requestedUser = req.user
+        // if (requestedUser?.role !== 'admin') {
+        //     return res.status(401).send({ message: "unauthorized access" });
+        // }
+        // console.log(requestedUser?.role)
         const result = await employeeModel.find();
         res.send({ success: true, data: result });
     } catch (err) {

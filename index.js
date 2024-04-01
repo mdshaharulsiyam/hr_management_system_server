@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 ApplyMiddleWare(app)
 
 
-app.use('/employe',employeeRoutes)
+app.use(employeeRoutes)
 app.use('/jwt',JWTRoutes)
 app.use('/department',DepartmentRout)
 // app.use("/holidays", holidayroutes);

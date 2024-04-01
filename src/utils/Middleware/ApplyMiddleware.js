@@ -8,7 +8,7 @@ const ApplyMiddleWare = (app)=>{
         origin: [
             LOCAL_CLIENT,
             CLIENT,
-            'http://localhost:3000/'
+            'http://localhost:3000'
         ],
         credentials : true,
         optionsSuccessStatus: 200,
